@@ -32,8 +32,13 @@ export function SideBarItem({
       >
         <Icon
           className={clsx(
-            "w-5 h-5 group-hover:stroke-brand-primary",
-            selected && "stroke-brand-primary"
+            "w-5 h-5 ",
+            selected && text !== "Estacionamentos"
+              ? "fill-black"
+              : selected && text === "Estacionamentos" && "stroke-black",
+            text === "Estacionamentos"
+              ? "group-hover:stroke-black"
+              : "group-hover:fill-black"
           )}
           color={getColorValue("gray-focus")}
         />

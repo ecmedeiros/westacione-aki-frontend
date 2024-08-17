@@ -13,11 +13,11 @@ export function LogoIcon() {
       <text
         x="50%"
         y="60%"
-        font-family="Arial"
-        font-size="70"
+        fontFamily="Arial"
+        fontSize="70"
         fill="black"
-        text-anchor="middle"
-        font-weight="bolder"
+        textAnchor="middle"
+        fontWeight="bolder"
       >
         WEA
       </text>

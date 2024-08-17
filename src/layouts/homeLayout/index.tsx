@@ -3,11 +3,11 @@ import { Outlet } from "react-router-dom"
 
 export function HomeLayout() {
   return (
-    <main
-      className={`grid grid-cols-[20rem_1fr] grid-rows-[80px_1fr] max-h-screen`}
-    >
+    <div className="flex max-h-screen w-full">
       <SideBar />
-      <Outlet />
-    </main>
+      <main className="transition-all duration-700 transform lg:ml-[230px] xl:ml-[300px] w-full h-screen">
+        <Outlet />
+      </main>
+    </div>
   )
 }

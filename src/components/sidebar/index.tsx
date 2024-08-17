@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import { useLocation } from "react-router-dom"
 
 import { SideBarItem } from "./sidebarItem"
