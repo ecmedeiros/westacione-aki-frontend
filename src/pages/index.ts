@@ -1,1 +1,2 @@
-export * from "./Home/home"
+export * from "./home"
+export * from "./notFound"
