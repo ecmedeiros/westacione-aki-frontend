@@ -9,22 +9,16 @@ import { TbCircleLetterE } from "react-icons/tb"
 
 import { BiAngry } from "react-icons/bi"
 
+import { LogoIcon } from "@/assets/logo"
+
 export function SideBar() {
   const { pathname } = useLocation()
 
   return (
-    <aside
-      className={clsx(
-        "h-full fixed top-0 z-20 left-0 min-h-screen bg-sidebar-background transition-all duration-700 transform w-[220px] lg:w-[230px] xl:w-[300px]"
-      )}
-    >
-      <div
-        className={clsx(
-          "flex items-center px-4 justify-center w-full h-20 gap-2 lg:gap-3 xl:gap-5"
-        )}
-      >
+    <aside className="h-full fixed top-0 z-20 left-0 min-h-screen bg-sidebar-background transition-all duration-700 transform w-[220px] lg:w-[230px] xl:w-[300px]">
+      <div className="flex items-center px-4 justify-center w-full gap-2 lg:gap-3 xl:gap-5">
         <div>
-          <p>logo</p>
+          <LogoIcon />
         </div>
       </div>
       <ul className="w-full h-fit flex flex-col">

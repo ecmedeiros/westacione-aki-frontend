@@ -27,6 +27,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "."],
+  "include": ["src", ".", "src/assets"],
   "exclude": [".github", "coverage", "node_modules"]
 }
