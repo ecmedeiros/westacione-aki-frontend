@@ -124,7 +124,7 @@ export function Home() {
   return (
     <div className="container flex flex-col w-full mx-auto p-4 gap-10">
       <div className="flex flex-col gap-5">
-        <h1 className="text-3xl font-bold">Home Page</h1>
+        <h1 className="text-3xl font-bold">Encontre um estacionamento!</h1>
         <input
           className="w-[350px] py-2 pl-3 text-sm text-gray-text-input placeholder-gray-100 border border-gray-vertical-line rounded-lg focus:outline-none focus:ring-0"
           type="text"
@@ -135,7 +135,7 @@ export function Home() {
       </div>
       {loading ? (
         <div className="flex justify-center">
-          <ClipLoader color={getColorValue("brand-secondary")} size={40} />
+          <ClipLoader color={getColorValue("gray-vertical-line")} size={70} />
         </div>
       ) : queryError ? (
         <div className="flex flex-col w-full items-center justify center">
