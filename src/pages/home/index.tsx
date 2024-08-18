@@ -5,91 +5,120 @@ import { useState } from "react"
 import { getColorValue } from "@/utils"
 import { ParkingLot } from "@/types"
 import { Link } from "react-router-dom"
+import axios from 'axios';
+
 
 export function Home() {
-  const mockdata: ParkingLot[] = [
-    {
-      Id: 1,
-      IdUsuario: 101,
-      Nome: "Estacionamento Central",
-      CapacidadeTotal: 50,
-      VagasDisponiveis: 10,
-      DtCriacao: new Date("2022-01-01"),
-    },
-    {
-      Id: 2,
-      IdUsuario: 102,
-      Nome: "Estacionamento Sul",
-      CapacidadeTotal: 100,
-      VagasDisponiveis: 25,
-      DtCriacao: new Date("2022-02-15"),
-    },
-    {
-      Id: 3,
-      IdUsuario: 103,
-      Nome: "Estacionamento Norte",
-      CapacidadeTotal: 70,
-      VagasDisponiveis: 15,
-      DtCriacao: new Date("2022-03-10"),
-    },
-    {
-      Id: 4,
-      IdUsuario: 104,
-      Nome: "Estacionamento Oeste",
-      CapacidadeTotal: 80,
-      VagasDisponiveis: 5,
-      DtCriacao: new Date("2022-04-20"),
-    },
-    {
-      Id: 5,
-      IdUsuario: 105,
-      Nome: "Estacionamento Leste",
-      CapacidadeTotal: 60,
-      VagasDisponiveis: 30,
-      DtCriacao: new Date("2022-05-05"),
-    },
-    {
-      Id: 6,
-      IdUsuario: 106,
-      Nome: "Estacionamento Centro Histórico",
-      CapacidadeTotal: 40,
-      VagasDisponiveis: 20,
-      DtCriacao: new Date("2022-06-11"),
-    },
-    {
-      Id: 7,
-      IdUsuario: 107,
-      Nome: "Estacionamento Aeroporto",
-      CapacidadeTotal: 120,
-      VagasDisponiveis: 60,
-      DtCriacao: new Date("2022-07-01"),
-    },
-    {
-      Id: 8,
-      IdUsuario: 108,
-      Nome: "Estacionamento Shopping",
-      CapacidadeTotal: 200,
-      VagasDisponiveis: 50,
-      DtCriacao: new Date("2022-08-08"),
-    },
-    {
-      Id: 9,
-      IdUsuario: 109,
-      Nome: "Estacionamento Hospital",
-      CapacidadeTotal: 150,
-      VagasDisponiveis: 40,
-      DtCriacao: new Date("2022-09-19"),
-    },
-    {
-      Id: 10,
-      IdUsuario: 110,
-      Nome: "Estacionamento Praia",
-      CapacidadeTotal: 90,
-      VagasDisponiveis: 35,
-      DtCriacao: new Date("2022-10-22"),
-    },
+
+
+  let mockdata: ParkingLot[] = [
+    // {
+    //   Id: 1,
+    //   IdUsuario: 101,
+    //   Nome: "Estacionamento Central",
+    //   CapacidadeTotal: 50,
+    //   VagasDisponiveis: 10,
+    //   DtCriacao: new Date("2022-01-01"),
+    // },
+    // {
+    //   Id: 2,
+    //   IdUsuario: 102,
+    //   Nome: "Estacionamento Sul",
+    //   CapacidadeTotal: 100,
+    //   VagasDisponiveis: 25,
+    //   DtCriacao: new Date("2022-02-15"),
+    // },
+    // {
+    //   Id: 3,
+    //   IdUsuario: 103,
+    //   Nome: "Estacionamento Norte",
+    //   CapacidadeTotal: 70,
+    //   VagasDisponiveis: 15,
+    //   DtCriacao: new Date("2022-03-10"),
+    // },
+    // {
+    //   Id: 4,
+    //   IdUsuario: 104,
+    //   Nome: "Estacionamento Oeste",
+    //   CapacidadeTotal: 80,
+    //   VagasDisponiveis: 5,
+    //   DtCriacao: new Date("2022-04-20"),
+    // },
+    // {
+    //   Id: 5,
+    //   IdUsuario: 105,
+    //   Nome: "Estacionamento Leste",
+    //   CapacidadeTotal: 60,
+    //   VagasDisponiveis: 30,
+    //   DtCriacao: new Date("2022-05-05"),
+    // },
+    // {
+    //   Id: 6,
+    //   IdUsuario: 106,
+    //   Nome: "Estacionamento Centro Histórico",
+    //   CapacidadeTotal: 40,
+    //   VagasDisponiveis: 20,
+    //   DtCriacao: new Date("2022-06-11"),
+    // },
+    // {
+    //   Id: 7,
+    //   IdUsuario: 107,
+    //   Nome: "Estacionamento Aeroporto",
+    //   CapacidadeTotal: 120,
+    //   VagasDisponiveis: 60,
+    //   DtCriacao: new Date("2022-07-01"),
+    // },
+    // {
+    //   Id: 8,
+    //   IdUsuario: 108,
+    //   Nome: "Estacionamento Shopping",
+    //   CapacidadeTotal: 200,
+    //   VagasDisponiveis: 50,
+    //   DtCriacao: new Date("2022-08-08"),
+    // },
+    // {
+    //   Id: 9,
+    //   IdUsuario: 109,
+    //   Nome: "Estacionamento Hospital",
+    //   CapacidadeTotal: 150,
+    //   VagasDisponiveis: 40,
+    //   DtCriacao: new Date("2022-09-19"),
+    // },
+    // {
+    //   Id: 10,
+    //   IdUsuario: 110,
+    //   Nome: "Estacionamento Praia",
+    //   CapacidadeTotal: 90,
+    //   VagasDisponiveis: 35,
+    //   DtCriacao: new Date("2022-10-22"),
+    // },
   ]
+
+   
   const [searchText, setSearchText] = useState<string>("")
+
+
+  // Fazendo uma requisição GET
+  axios.get('http://localhost:5123/api/Estacionamento/ObterTodos', {
+    params: {
+      page: 1,
+      pageSize: 10
+    },
+    headers: {
+      'accept': '*/*'
+    }
+  })
+  .then(response => {
+    
+    mockdata = response.data.objeto.itens;
+    alert("teste")
+    
+    //console.log(response.data.objeto.itens); // Manipula a resposta de sucesso
+  })
+  .catch(error => {
+    console.error('Erro na requisição:', error); // Manipula os erros da requisição
+  });
+  
 
   // const {
   //   data: parkingLotData,
@@ -117,6 +146,8 @@ export function Home() {
       return null
     })
     .filter((parkingLot) => parkingLot !== null)
+
+
 
   const loading = false
   const queryError = false
